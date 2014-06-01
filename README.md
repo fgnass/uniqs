@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fgnass/uniqs.svg?branch=master)](https://travis-ci.org/fgnass/uniqs)
+
 ### Tiny utility to de-duplicate lists.
 
 Example:
