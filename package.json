@@ -1,0 +1,16 @@
+{
+  "name": "uniqs",
+  "version": "1.0.0",
+  "description": "Creates a de-duplicated version of a given list",
+  "keywords": [ "unique", "uniq", "dedupe" ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fgnass/uniqs.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Felix Gnass <fgnass@gmail.com>",
+  "license": "MIT"
+}
