@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/fgnass/uniqs.svg?branch=master)](https://travis-ci.org/fgnass/uniqs)
 
-### Tiny utility to de-duplicate lists.
+### Tiny utility to create unions and de-duplicated lists.
 
 Example:
 
@@ -8,22 +8,30 @@ Example:
 var uniqs = require('uniqs');
 
 var foo = { foo: 23 };
-var list = [ 3, 2, 2, 1, foo, foo ];
+var list = [3, 2, 2, 1, foo, foo];
 
-console.log(uniqs(list));
+uniqs(list);
+// => [3, 2, 1, { foo: 23 }]
 ```
 
-Output:
+You can pass multiple lists to create a union:
 
 ```js
-[ 3, 2, 1, { foo: 23 } ]
-
+uniqs([2, 1, 1], [2, 3, 3, 4], [4, 3, 2]);
+// => [2, 1, 3, 4]
 ```
 
+Passing individual items works too:
+```js
+uniqs(3, 2, 2, [1, 1, 2]);
+// => [3, 2, 1]
+```
+
+### Summary
+
 * Uniqueness is defined based on strict object equality.
-* The list does not need to be sorted.
-* The original list is not modified.
-* If the given argument is not _array-like_, an empty array is returned.
+* The lists do not need to be sorted.
+* The resulting array contains the items in the order of their first appearance.
 
 ### About
 
@@ -35,13 +43,10 @@ The implementation is optimized for simplicity rather than performance and
 looks like this:
 
 ```js
-var filter = Array.prototype.filter;
-var indexOf = Array.prototype.indexOf;
-
-module.exports = function uniqs(list) {
-  if (!list) return [];
-  return filter.call(list, function(item, i) {
-    return i == indexOf.call(list, item);
+module.exports = function uniqs() {
+  var list = Array.prototype.concat.apply([], arguments);
+  return list.filter(function(item, i) {
+    return i == list.indexOf(item);
   });
 };
 ```
