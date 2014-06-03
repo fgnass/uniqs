@@ -1,8 +1,13 @@
 {
   "name": "uniqs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Tiny utility to create unions and de-duplicated lists",
-  "keywords": [ "unique", "uniq", "dedupe", "union" ],
+  "keywords": [
+    "unique",
+    "uniq",
+    "dedupe",
+    "union"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/fgnass/uniqs.git"
